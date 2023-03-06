@@ -1,38 +1,41 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class AppLayout implements ActionListener {
-	public static JPanel cards;
+
+	public static JPanel cardsPanel = new JPanel(new CardLayout());
 	public static final String CURRENCYPANEL = "Divisas";
 	public static final String TEMPERATUREPANEL = "Temperatura";
 
 	public void addComponentsToPane(Container pane) {
-		JPanel menu = new JPanel();
+
+		JPanel navigationPanel = new JPanel();
 		JButton button = new JButton(CURRENCYPANEL);
 		JButton button2 = new JButton(TEMPERATUREPANEL);
+
 		button.addActionListener(new AppLayout());
 		button2.addActionListener(new AppLayout());
-		menu.add(button);
-		menu.add(button2);
 
-		JPanel currencies = new JPanel();
-		currencies.add(new JLabel(CURRENCYPANEL));
-		JPanel temperature = new JPanel();
-		temperature.add(new JLabel(TEMPERATUREPANEL));
+		navigationPanel.add(button);
+		navigationPanel.add(button2);
 
-		cards = new JPanel(new CardLayout());
-		cards.add(currencies, CURRENCYPANEL);
-		cards.add(temperature, TEMPERATUREPANEL);
+		JPanel currenciesPanel = new PanelCurrencies();
+		JPanel temperaturePanel = new PanelTemperature();
 
-		pane.add(menu, BorderLayout.PAGE_START);
-		pane.add(cards, BorderLayout.CENTER);
+		cardsPanel.add(currenciesPanel, CURRENCYPANEL);
+		cardsPanel.add(temperaturePanel, TEMPERATUREPANEL);
+
+		pane.add(navigationPanel, BorderLayout.PAGE_START);
+		pane.add(cardsPanel, BorderLayout.CENTER);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton source = (JButton) e.getSource();
-		CardLayout cl = (CardLayout) cards.getLayout();
-		cl.show(cards, source.getText());
+		CardLayout cl = (CardLayout) cardsPanel.getLayout();
+		cl.show(cardsPanel, source.getText());
 	}
 }
