@@ -16,6 +16,9 @@ public class AppLayout implements ActionListener {
 		JButton button = new JButton(CURRENCYPANEL);
 		JButton button2 = new JButton(TEMPERATUREPANEL);
 
+		navigationPanel.setLayout(new GridLayout(0, 2));
+
+		button.setMargin(new Insets(8, 16, 8, 16));
 		button.addActionListener(new AppLayout());
 		button2.addActionListener(new AppLayout());
 
