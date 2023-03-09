@@ -4,18 +4,21 @@ import javax.swing.SwingUtilities;
 
 public class App {
 
+	private static JFrame frame;
+	private static AppLayout al;
+
 	private static void renderGUI() {
-		JFrame frame = new JFrame("Conversor de unidades");
+
+		frame = new JFrame("Conversor de unidades");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIconImage(new ImageIcon("currency_exchange.jpg").getImage());
 		frame.setResizable(false);
 
-		AppLayout al = new AppLayout();
+		al = new AppLayout();
 		al.addComponentsToPane(frame.getContentPane());
 
 		frame.pack();
 		frame.setVisible(true);
-
 	}
 
 	public static void main(String[] args) {

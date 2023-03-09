@@ -6,27 +6,33 @@ import javax.swing.JPanel;
 
 public class AppLayout implements ActionListener {
 
-	public static JPanel cardsPanel = new JPanel(new CardLayout());
-	public static final String CURRENCYPANEL = "Divisas";
-	public static final String TEMPERATUREPANEL = "Temperatura";
+	private JPanel cardsPanel;
+	private JPanel navigationPanel;
+	private JPanel currenciesPanel;
+	private JPanel temperaturePanel;
+	private String CURRENCYPANEL = "Divisas";
+	private String TEMPERATUREPANEL = "Temperatura";
+	private JButton navBtnCurrency;
+	private JButton navBrnTemperature;
 
 	public void addComponentsToPane(Container pane) {
 
-		JPanel navigationPanel = new JPanel();
-		JButton button = new JButton(CURRENCYPANEL);
-		JButton button2 = new JButton(TEMPERATUREPANEL);
-
+		cardsPanel = new JPanel(new CardLayout());
+		navigationPanel = new JPanel();
 		navigationPanel.setLayout(new GridLayout(0, 2));
 
-		button.setMargin(new Insets(8, 16, 8, 16));
-		button.addActionListener(new AppLayout());
-		button2.addActionListener(new AppLayout());
+		navBtnCurrency = new JButton(CURRENCYPANEL);
+		navBrnTemperature = new JButton(TEMPERATUREPANEL);
+		navBtnCurrency.setMargin(new Insets(8, 16, 8, 16));
 
-		navigationPanel.add(button);
-		navigationPanel.add(button2);
+		navBtnCurrency.addActionListener(new AppLayout());
+		navBrnTemperature.addActionListener(new AppLayout());
 
-		JPanel currenciesPanel = new PanelCurrencies();
-		JPanel temperaturePanel = new PanelTemperature();
+		navigationPanel.add(navBtnCurrency);
+		navigationPanel.add(navBrnTemperature);
+
+		currenciesPanel = new PanelCurrencies();
+		temperaturePanel = new PanelTemperature();
 
 		cardsPanel.add(currenciesPanel, CURRENCYPANEL);
 		cardsPanel.add(temperaturePanel, TEMPERATUREPANEL);
