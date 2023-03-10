@@ -1,12 +1,17 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class AppLayout implements ActionListener {
 
-	private JPanel cardsPanel;
+	private static JPanel cardsPanel;
 	private JPanel navigationPanel;
 	private JPanel currenciesPanel;
 	private JPanel temperaturePanel;

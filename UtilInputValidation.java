@@ -8,9 +8,9 @@ public class UtilInputValidation implements KeyListener {
 	private JTextField inputField;
 	private JLabel result;
 
-	public UtilInputValidation(JTextField input, JLabel outcome) {
+	public UtilInputValidation(JTextField input, JLabel result) {
 		this.inputField = input;
-		this.result = outcome;
+		this.result = result;
 	}
 
 	@Override
