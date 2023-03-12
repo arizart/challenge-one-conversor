@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 public class App {
 
 	private static JFrame frame;
-	private static AppLayout al;
+	private static CardsPane cards;
 
 	private static void renderGUI() {
 
@@ -14,8 +14,8 @@ public class App {
 		frame.setIconImage(new ImageIcon("currency_exchange.jpg").getImage());
 		frame.setResizable(false);
 
-		al = new AppLayout();
-		al.addComponentsToPane(frame.getContentPane());
+		cards = new CardsPane();
+		cards.addComponentsToPane(frame.getContentPane());
 
 		frame.pack();
 		frame.setVisible(true);

@@ -12,20 +12,20 @@ public abstract class PanelTemplate extends JPanel {
 	private JPanel resultPanel;
 	private JTextField inputField;
 	private JComboBox<String> originUnit;
+	private JButton swapButton;
 	private JComboBox<String> targetUnit;
 	private JButton convertButton;
 	private JLabel result;
 
 	public PanelTemplate() {
 
-		setLayout(new BorderLayout(8, 8));
+		setLayout(new BorderLayout(24, 24));
 		setInputsPanel(new JPanel());
 
 		setInputField(new JTextField(7));
 		getInputField().setMargin(new Insets(3, 8, 3, 8));
 		setResult(new JLabel("test"));
 		getInputField().addKeyListener(new UtilInputValidation(getInputField(), getResult()));
-
 		setConvertButton(new JButton("Convertir"));
 
 		setResultPanel(new JPanel());
@@ -61,6 +61,14 @@ public abstract class PanelTemplate extends JPanel {
 
 	public void setOriginUnit(JComboBox<String> originUnit) {
 		this.originUnit = originUnit;
+	}
+
+	public JButton getSwapButton() {
+		return swapButton;
+	}
+
+	public void setSwapButton(JButton swapButton) {
+		this.swapButton = swapButton;
 	}
 
 	public JComboBox<String> getTargetUnit() {

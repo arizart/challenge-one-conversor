@@ -1,8 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 
 public class PanelTemperature extends PanelTemplate {
 
@@ -15,11 +15,12 @@ public class PanelTemperature extends PanelTemplate {
 		setOriginUnit(new JComboBox<>(scales));
 		setTargetUnit(new JComboBox<>(scales));
 
+		getSwapButton().addActionListener(new ClickListener());
 		getConvertButton().addActionListener(new ClickListener());
 
 		getInputsPanel().add(getInputField());
 		getInputsPanel().add(getOriginUnit());
-		getInputsPanel().add(new JLabel(" a "));
+		getInputsPanel().add(getSwapButton());
 		getInputsPanel().add(getTargetUnit());
 		getInputsPanel().add(getConvertButton());
 		getResultPanel().add(getResult());

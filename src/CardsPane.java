@@ -8,8 +8,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-public class AppLayout implements ActionListener {
+public class CardsPane implements ActionListener {
 
 	private static JPanel cardsPanel;
 	private JPanel navigationPanel;
@@ -23,6 +24,7 @@ public class AppLayout implements ActionListener {
 	public void addComponentsToPane(Container pane) {
 
 		cardsPanel = new JPanel(new CardLayout());
+		cardsPanel.setBorder(new EmptyBorder(32, 32, 32, 32));
 		navigationPanel = new JPanel();
 		navigationPanel.setLayout(new GridLayout(0, 2));
 
@@ -30,8 +32,8 @@ public class AppLayout implements ActionListener {
 		navBrnTemperature = new JButton(TEMPERATUREPANEL);
 		navBtnCurrency.setMargin(new Insets(8, 16, 8, 16));
 
-		navBtnCurrency.addActionListener(new AppLayout());
-		navBrnTemperature.addActionListener(new AppLayout());
+		navBtnCurrency.addActionListener(new CardsPane());
+		navBrnTemperature.addActionListener(new CardsPane());
 
 		navigationPanel.add(navBtnCurrency);
 		navigationPanel.add(navBrnTemperature);

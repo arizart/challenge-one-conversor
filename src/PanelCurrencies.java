@@ -6,13 +6,11 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class PanelCurrencies extends PanelTemplate {
 
 	private String exchangeAPI;
-	private HashMap<String, Double> exchangeRates;
 	private String[] currencies = { "test", "test2", "test3" };
 	private JPanel refreshPanel;
 	private JButton refreshCurrencies;
@@ -24,7 +22,7 @@ public class PanelCurrencies extends PanelTemplate {
 		exchangeAPI = "https://open.er-api.com/v6/latest/USD";
 		GetExchangeRates();
 
-		exchangeRates = new HashMap<>();
+		new HashMap<>();
 		refreshPanel = new JPanel();
 
 		refreshCurrencies = new JButton("Actualizar divisas");
@@ -33,12 +31,14 @@ public class PanelCurrencies extends PanelTemplate {
 		setOriginUnit(new JComboBox<>(currencies));
 		setTargetUnit(new JComboBox<>(currencies));
 
+		getSwapButton().addActionListener(new ClickListener());
 		getConvertButton().addActionListener(new ClickListener());
 
 		refreshPanel.add(refreshCurrencies);
 		getInputsPanel().add(getInputField());
 		getInputsPanel().add(getOriginUnit());
-		getInputsPanel().add(new JLabel(" a "));
+
+		getInputsPanel().add(getSwapButton());
 		getInputsPanel().add(getTargetUnit());
 		getInputsPanel().add(getConvertButton());
 		getResultPanel().add(getResult());
