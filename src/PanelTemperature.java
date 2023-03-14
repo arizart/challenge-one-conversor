@@ -23,10 +23,10 @@ public class PanelTemperature extends PanelTemplate {
 		getInputsPanel().add(getSwapButton());
 		getInputsPanel().add(getTargetUnit());
 		getInputsPanel().add(getConvertButton());
-		getResultPanel().add(getResult());
+		getOutputPanel().add(getOutput());
 
 		add(getInputsPanel(), BorderLayout.PAGE_START);
-		add(getResultPanel(), BorderLayout.PAGE_END);
+		add(getOutputPanel(), BorderLayout.PAGE_END);
 	}
 
 	public class ClickListener implements ActionListener {

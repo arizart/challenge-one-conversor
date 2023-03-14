@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -9,13 +10,13 @@ import javax.swing.JTextField;
 public abstract class PanelTemplate extends JPanel {
 
 	private JPanel inputsPanel;
-	private JPanel resultPanel;
+	private JPanel outputPanel;
 	private JTextField inputField;
 	private JComboBox<String> originUnit;
 	private JButton swapButton;
 	private JComboBox<String> targetUnit;
 	private JButton convertButton;
-	private JLabel result;
+	private JLabel output;
 
 	public PanelTemplate() {
 
@@ -24,11 +25,12 @@ public abstract class PanelTemplate extends JPanel {
 
 		setInputField(new JTextField(7));
 		getInputField().setMargin(new Insets(3, 8, 3, 8));
-		setResult(new JLabel("test"));
-		getInputField().addKeyListener(new UtilInputValidation(getInputField(), getResult()));
+		setOutput(new JLabel(""));
+		getInputField().addKeyListener(new UtilInputValidation(getInputField(), getOutput()));
+		setSwapButton(new JButton("<>"));
 		setConvertButton(new JButton("Convertir"));
 
-		setResultPanel(new JPanel());
+		setOutputPanel(new JPanel());
 	}
 
 	public JPanel getInputsPanel() {
@@ -39,12 +41,12 @@ public abstract class PanelTemplate extends JPanel {
 		this.inputsPanel = inputsPanel;
 	}
 
-	public JPanel getResultPanel() {
-		return resultPanel;
+	public JPanel getOutputPanel() {
+		return outputPanel;
 	}
 
-	public void setResultPanel(JPanel resultPanel) {
-		this.resultPanel = resultPanel;
+	public void setOutputPanel(JPanel outputPanel) {
+		this.outputPanel = outputPanel;
 	}
 
 	public JTextField getInputField() {
@@ -87,11 +89,11 @@ public abstract class PanelTemplate extends JPanel {
 		this.convertButton = convertButton;
 	}
 
-	public JLabel getResult() {
-		return result;
+	public JLabel getOutput() {
+		return output;
 	}
 
-	public void setResult(JLabel result) {
-		this.result = result;
+	public void setOutput(JLabel output) {
+		this.output = output;
 	}
 }

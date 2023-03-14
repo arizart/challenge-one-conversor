@@ -11,7 +11,7 @@ public class App {
 
 		frame = new JFrame("Conversor de unidades");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setIconImage(new ImageIcon("currency_exchange.jpg").getImage());
+		frame.setIconImage(new ImageIcon("assets/icon.jpg").getImage());
 		frame.setResizable(false);
 
 		cards = new CardsPane();
