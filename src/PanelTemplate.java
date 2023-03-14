@@ -28,7 +28,9 @@ public abstract class PanelTemplate extends JPanel {
 		setOutput(new JLabel(""));
 		getInputField().addKeyListener(new UtilInputValidation(getInputField(), getOutput()));
 		setSwapButton(new JButton("<>"));
+		getSwapButton().setName("SwapUnits");
 		setConvertButton(new JButton("Convertir"));
+		getConvertButton().setName("ConvertUnits");
 
 		setOutputPanel(new JPanel());
 	}
@@ -96,4 +98,6 @@ public abstract class PanelTemplate extends JPanel {
 	public void setOutput(JLabel output) {
 		this.output = output;
 	}
+
+	public abstract void ConvertUnits();
 }

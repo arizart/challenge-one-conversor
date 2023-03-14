@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 public class PanelTemperature extends PanelTemplate {
@@ -33,10 +34,27 @@ public class PanelTemperature extends PanelTemplate {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO: Call convert function
-			String test = String.valueOf(getOriginUnit().getSelectedItem());
-			String test2 = String.valueOf(getTargetUnit().getSelectedItem());
-			System.out.println(test + test2);
+			String sauce = ((JButton) e.getSource()).getName();
+			if (sauce == "SwapUnits") {
+				// TODO: Implement SwapUnits function.
+			} else if (sauce == "ConvertUnits") {
+				ConvertUnits();
+			}
 		}
+	}
+
+	public void ConvertUnits() {
+		float value;
+		try {
+			value = Float.parseFloat(getInputField().getText());
+		} catch (NumberFormatException nfe) {
+			getOutput().setText("Digite un monto.");
+			nfe.printStackTrace();
+			return;
+		}
+
+		String origin = String.valueOf(getOriginUnit().getSelectedItem());
+		String target = String.valueOf(getTargetUnit().getSelectedItem());
+		System.out.println(origin + target + value);
 	}
 }

@@ -1,24 +1,23 @@
-import org.json.*;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import org.json.*;
+
 public class PanelCurrencies extends PanelTemplate {
 
 	private String exchangeAPI;
-	private HashMap<String, Double> exchangeRates;
+	private HashMap<String, Float> exchangeRates;
 	private ArrayList<String> currencies;
 	private JPanel refreshPanel;
 	private JButton refreshCurrencies;
@@ -35,6 +34,7 @@ public class PanelCurrencies extends PanelTemplate {
 		refreshPanel = new JPanel();
 
 		refreshCurrencies = new JButton("Actualizar divisas");
+		refreshCurrencies.setName("UpdateExchangeRates");
 		refreshCurrencies.addActionListener(new ClickListener());
 
 		setOriginUnit(new JComboBox<>());
@@ -64,13 +64,22 @@ public class PanelCurrencies extends PanelTemplate {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO: Call convert function
+			String sauce = ((JButton) e.getSource()).getName();
+			if (sauce == "UpdateExchangeRates") {
+				UpdateExchangeRates();
+			} else if (sauce == "SwapUnits") {
+				// TODO: Implement SwapUnits function.
+			} else if (sauce == "ConvertUnits") {
+				ConvertUnits();
+			}
 		}
 	}
 
 	public void UpdateExchangeRates() {
+
 		UtilHttpRequest request = new UtilHttpRequest();
 		String response;
+
 		try {
 			response = request.GET(exchangeAPI);
 		} catch (IOException ioe) {
@@ -85,11 +94,29 @@ public class PanelCurrencies extends PanelTemplate {
 
 		while (keys.hasNext()) {
 			String key = keys.next();
-			exchangeRates.put(key, rates.getDouble(key));
+			exchangeRates.put(key, rates.getFloat(key));
 			currencies.add(key);
 		}
 
 		Collections.sort(currencies);
 		getOutput().setText("Actualización correcta.");
+	}
+
+	public void ConvertUnits() {
+		float value;
+		try {
+			value = Float.parseFloat(getInputField().getText());
+		} catch (NumberFormatException nfe) {
+			getOutput().setText("Digite un monto.");
+			nfe.printStackTrace();
+			return;
+		}
+
+		String origin = String.valueOf(getOriginUnit().getSelectedItem());
+		String target = String.valueOf(getTargetUnit().getSelectedItem());
+
+		float result = value / exchangeRates.get(origin) * exchangeRates.get(target);
+
+		getOutput().setText(value + " " + origin + " equivale a " + String.format("%.2f", result) + " " + target);
 	}
 }

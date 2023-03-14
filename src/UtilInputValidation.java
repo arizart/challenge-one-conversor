@@ -1,4 +1,5 @@
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -6,11 +7,11 @@ import javax.swing.JTextField;
 public class UtilInputValidation implements KeyListener {
 
 	private JTextField inputField;
-	private JLabel result;
+	private JLabel output;
 
-	public UtilInputValidation(JTextField input, JLabel result) {
+	public UtilInputValidation(JTextField input, JLabel output) {
 		this.inputField = input;
-		this.result = result;
+		this.output = output;
 	}
 
 	@Override
@@ -24,12 +25,12 @@ public class UtilInputValidation implements KeyListener {
 		boolean validInput = '0' <= key && key <= '9' || key == '.' || key == '\b';
 
 		if (validInput) {
-			result.setText("");
+			output.setText("");
 		} else if (key == '\n') {
 			// TODO: Call convert function.
 		} else {
 			inputField.setText("");
-			result.setText("El campo sólo acepta números.");
+			output.setText("El campo sólo acepta números.");
 		}
 	}
 
