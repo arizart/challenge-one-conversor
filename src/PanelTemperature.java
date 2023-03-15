@@ -10,8 +10,8 @@ public class PanelTemperature extends PanelTemplate {
 
 		super();
 
-		setOriginUnit(new JComboBox<>(scales));
-		setTargetUnit(new JComboBox<>(scales));
+		setOriginUnit(new JComboBox<>(getScales()));
+		setTargetUnit(new JComboBox<>(getScales()));
 
 		getSwapButton().addActionListener(new UtilClickListener(this));
 		getConvertButton().addActionListener(new UtilClickListener(this));
@@ -25,6 +25,14 @@ public class PanelTemperature extends PanelTemplate {
 
 		add(getInputsPanel(), BorderLayout.PAGE_START);
 		add(getOutputPanel(), BorderLayout.PAGE_END);
+	}
+
+	public String[] getScales() {
+		return scales;
+	}
+
+	public void setScales(String[] scales) {
+		this.scales = scales;
 	}
 
 	public void ConvertUnits() {

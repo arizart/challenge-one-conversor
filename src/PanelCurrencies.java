@@ -24,16 +24,16 @@ public class PanelCurrencies extends PanelTemplate {
 
 		super();
 
-		exchangeAPI = "https://open.er-api.com/v6/latest/USD";
-		exchangeRates = new HashMap<>();
-		currencies = new ArrayList<>();
+		setExchangeAPI("https://open.er-api.com/v6/latest/USD");
+		setExchangeRates(new HashMap<>());
+		setCurrencies(new ArrayList<>());
 		UpdateExchangeRates();
 
-		refreshPanel = new JPanel();
+		setRefreshPanel(new JPanel());
 
-		refreshCurrencies = new JButton("Actualizar divisas");
-		refreshCurrencies.setName("UpdateExchangeRates");
-		refreshCurrencies.addActionListener(new UtilClickListener(this));
+		setRefreshCurrencies(new JButton("Actualizar divisas"));
+		getRefreshCurrencies().setName("UpdateExchangeRates");
+		getRefreshCurrencies().addActionListener(new UtilClickListener(this));
 
 		setOriginUnit(new JComboBox<>());
 		setTargetUnit(new JComboBox<>());
@@ -44,7 +44,7 @@ public class PanelCurrencies extends PanelTemplate {
 		getSwapButton().addActionListener(new UtilClickListener(this));
 		getConvertButton().addActionListener(new UtilClickListener(this));
 
-		refreshPanel.add(refreshCurrencies);
+		getRefreshPanel().add(refreshCurrencies);
 		getInputsPanel().add(getInputField());
 		getInputsPanel().add(getOriginUnit());
 
@@ -53,9 +53,49 @@ public class PanelCurrencies extends PanelTemplate {
 		getInputsPanel().add(getConvertButton());
 		getOutputPanel().add(getOutput());
 
-		add(refreshPanel, BorderLayout.PAGE_START);
+		add(getRefreshPanel(), BorderLayout.PAGE_START);
 		add(getInputsPanel(), BorderLayout.CENTER);
 		add(getOutputPanel(), BorderLayout.PAGE_END);
+	}
+
+	public String getExchangeAPI() {
+		return exchangeAPI;
+	}
+
+	public void setExchangeAPI(String exchangeAPI) {
+		this.exchangeAPI = exchangeAPI;
+	}
+
+	public HashMap<String, Float> getExchangeRates() {
+		return exchangeRates;
+	}
+
+	public void setExchangeRates(HashMap<String, Float> exchangeRates) {
+		this.exchangeRates = exchangeRates;
+	}
+
+	public ArrayList<String> getCurrencies() {
+		return currencies;
+	}
+
+	public void setCurrencies(ArrayList<String> currencies) {
+		this.currencies = currencies;
+	}
+
+	public JPanel getRefreshPanel() {
+		return refreshPanel;
+	}
+
+	public void setRefreshPanel(JPanel refreshPanel) {
+		this.refreshPanel = refreshPanel;
+	}
+
+	public JButton getRefreshCurrencies() {
+		return refreshCurrencies;
+	}
+
+	public void setRefreshCurrencies(JButton refreshCurrencies) {
+		this.refreshCurrencies = refreshCurrencies;
 	}
 
 	@Override
@@ -65,7 +105,7 @@ public class PanelCurrencies extends PanelTemplate {
 		String response;
 
 		try {
-			response = request.GET(exchangeAPI);
+			response = request.GET(getExchangeAPI());
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			getOutput().setText(
@@ -78,22 +118,22 @@ public class PanelCurrencies extends PanelTemplate {
 
 		while (keys.hasNext()) {
 			String key = keys.next();
-			exchangeRates.put(key, rates.getFloat(key));
-			currencies.add(key);
+			getExchangeRates().put(key, rates.getFloat(key));
+			getCurrencies().add(key);
 		}
 
-		Collections.sort(currencies);
+		Collections.sort(getCurrencies());
 		getOutput().setText("Actualización correcta.");
 	}
 
 	public void ConvertUnits() {
-		float value = Float.parseFloat(getInputField().getText());
-
+		float input = Float.parseFloat(getInputField().getText());
 		String origin = String.valueOf(getOriginUnit().getSelectedItem());
 		String target = String.valueOf(getTargetUnit().getSelectedItem());
 
-		float result = value / exchangeRates.get(origin) * exchangeRates.get(target);
+		UtilUnitConverter converter = new UtilUnitConverter();
+		float result = converter.Currency(input, origin, target, getExchangeRates());
 
-		getOutput().setText(value + " " + origin + " equivale a " + String.format("%.2f", result) + " " + target);
+		getOutput().setText(input + " " + origin + " equivale a " + String.format("%.2f", result) + " " + target);
 	}
 }
