@@ -26,7 +26,7 @@ public abstract class PanelTemplate extends JPanel {
 		setInputField(new JTextField(7));
 		getInputField().setMargin(new Insets(3, 8, 3, 8));
 		setOutput(new JLabel(""));
-		getInputField().addKeyListener(new UtilInputValidation(getInputField(), getOutput()));
+		getInputField().addKeyListener(new UtilInputValidation(this));
 		setSwapButton(new JButton("<>"));
 		getSwapButton().setName("SwapUnits");
 		setConvertButton(new JButton("Convertir"));

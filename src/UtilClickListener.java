@@ -19,7 +19,10 @@ public class UtilClickListener implements ActionListener {
 		} else if (sauce == "SwapUnits") {
 			panel.SwapUnits();
 		} else if (sauce == "ConvertUnits") {
-			panel.ConvertUnits();
+			UtilInputValidation validator = new UtilInputValidation(panel);
+			if (validator.Validate(panel.getInputField())) {
+				panel.ConvertUnits();
+			}
 		}
 	}
 }

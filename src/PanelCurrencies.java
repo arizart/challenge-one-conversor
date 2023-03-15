@@ -87,14 +87,7 @@ public class PanelCurrencies extends PanelTemplate {
 	}
 
 	public void ConvertUnits() {
-		float value;
-		try {
-			value = Float.parseFloat(getInputField().getText());
-		} catch (NumberFormatException nfe) {
-			getOutput().setText("Digite un monto.");
-			nfe.printStackTrace();
-			return;
-		}
+		float value = Float.parseFloat(getInputField().getText());
 
 		String origin = String.valueOf(getOriginUnit().getSelectedItem());
 		String target = String.valueOf(getTargetUnit().getSelectedItem());
