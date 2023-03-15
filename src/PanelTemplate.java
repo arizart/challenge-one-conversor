@@ -99,5 +99,15 @@ public abstract class PanelTemplate extends JPanel {
 		this.output = output;
 	}
 
+	public void UpdateExchangeRates() {
+	}
+
+	public void SwapUnits() {
+
+		String tempValue = (String) getOriginUnit().getSelectedItem();
+		getOriginUnit().setSelectedItem(getTargetUnit().getSelectedItem());
+		getTargetUnit().setSelectedItem(tempValue);
+	}
+
 	public abstract void ConvertUnits();
 }
