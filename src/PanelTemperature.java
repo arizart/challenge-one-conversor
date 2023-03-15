@@ -1,8 +1,5 @@
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 public class PanelTemperature extends PanelTemplate {
@@ -16,8 +13,8 @@ public class PanelTemperature extends PanelTemplate {
 		setOriginUnit(new JComboBox<>(scales));
 		setTargetUnit(new JComboBox<>(scales));
 
-		getSwapButton().addActionListener(new ClickListener());
-		getConvertButton().addActionListener(new ClickListener());
+		getSwapButton().addActionListener(new UtilClickListener(this));
+		getConvertButton().addActionListener(new UtilClickListener(this));
 
 		getInputsPanel().add(getInputField());
 		getInputsPanel().add(getOriginUnit());
@@ -28,19 +25,6 @@ public class PanelTemperature extends PanelTemplate {
 
 		add(getInputsPanel(), BorderLayout.PAGE_START);
 		add(getOutputPanel(), BorderLayout.PAGE_END);
-	}
-
-	public class ClickListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String sauce = ((JButton) e.getSource()).getName();
-			if (sauce == "SwapUnits") {
-				// TODO: Implement SwapUnits function.
-			} else if (sauce == "ConvertUnits") {
-				ConvertUnits();
-			}
-		}
 	}
 
 	public void ConvertUnits() {

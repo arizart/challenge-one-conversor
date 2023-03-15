@@ -1,6 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +33,7 @@ public class PanelCurrencies extends PanelTemplate {
 
 		refreshCurrencies = new JButton("Actualizar divisas");
 		refreshCurrencies.setName("UpdateExchangeRates");
-		refreshCurrencies.addActionListener(new ClickListener());
+		refreshCurrencies.addActionListener(new UtilClickListener(this));
 
 		setOriginUnit(new JComboBox<>());
 		setTargetUnit(new JComboBox<>());
@@ -43,8 +41,8 @@ public class PanelCurrencies extends PanelTemplate {
 		getOriginUnit().setModel(new DefaultComboBoxModel<String>(currencies.toArray(new String[0])));
 		getTargetUnit().setModel(new DefaultComboBoxModel<String>(currencies.toArray(new String[0])));
 
-		getSwapButton().addActionListener(new ClickListener());
-		getConvertButton().addActionListener(new ClickListener());
+		getSwapButton().addActionListener(new UtilClickListener(this));
+		getConvertButton().addActionListener(new UtilClickListener(this));
 
 		refreshPanel.add(refreshCurrencies);
 		getInputsPanel().add(getInputField());
@@ -60,21 +58,7 @@ public class PanelCurrencies extends PanelTemplate {
 		add(getOutputPanel(), BorderLayout.PAGE_END);
 	}
 
-	public class ClickListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String sauce = ((JButton) e.getSource()).getName();
-			if (sauce == "UpdateExchangeRates") {
-				UpdateExchangeRates();
-			} else if (sauce == "SwapUnits") {
-				// TODO: Implement SwapUnits function.
-			} else if (sauce == "ConvertUnits") {
-				ConvertUnits();
-			}
-		}
-	}
-
+	@Override
 	public void UpdateExchangeRates() {
 
 		UtilHttpRequest request = new UtilHttpRequest();
