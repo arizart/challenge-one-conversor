@@ -24,7 +24,7 @@ public class CardsPane implements ActionListener {
 	public void addComponentsToPane(Container pane) {
 
 		cardsPanel = new JPanel(new CardLayout());
-		cardsPanel.setBorder(new EmptyBorder(32, 32, 32, 32));
+		cardsPanel.setBorder(new EmptyBorder(24, 24, 40, 24));
 		navigationPanel = new JPanel();
 		navigationPanel.setLayout(new GridLayout(0, 2));
 

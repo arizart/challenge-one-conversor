@@ -18,6 +18,7 @@ public class App {
 		cards.addComponentsToPane(frame.getContentPane());
 
 		frame.pack();
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
