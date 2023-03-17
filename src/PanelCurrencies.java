@@ -109,7 +109,7 @@ public class PanelCurrencies extends PanelTemplate {
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 			getOutput().setText(
-					"No se pudo actualizar las divisas. Revisa tu conección a internet y vuelve a intentarlo.");
+					"No se pudo actualizar las divisas. Revisa tu conexión a internet y vuelve a intentarlo.");
 			return;
 		}
 
