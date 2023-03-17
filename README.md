@@ -6,6 +6,16 @@ Conversor de unidades desarrollado con Java para el Challenge ONE de la especial
 
 ## Uso
 
-Descarge la versión más reciente del ejecutable [JAR](https://github.com/arizart/challenge-one-conversor/releases) y ejecútelo con un doble click. Debe tener Java instalado en su equipo. En la ventana abierta elija si desea convertir entre divisas o temperatura, seleccione las unidades de origen y destino con los menús desplegables, ingrese un monto y haga click en el botón _Convertir_.
+Descarge la versión más reciente del ejecutable [JAR](https://github.com/arizart/challenge-one-conversor/releases) y ejecútelo con un doble click. Debe tener Java instalado en su equipo.
+Elija entre los distintos modos de conversión, seleccione las unidades de origen y destino, ingrese un valor y haga click en el botón _Convertir_.
 
-Si lo desea también puede compilar desde el código fuente. Para eso descargue o clone el repositorio a su equipo. En la carpeta principal debe crear una nueva carpeta con nombre **lib** y colocar dentro una librería para JSON que puede obtener [aquí](https://mvnrepository.com/artifact/org.json/json/20230227). Abra una terminal de comandos en la ubicación del repositorio y ejecute el comando `javac -cp .:src:lib/* -d bin src/App.java` (para Windows reemplace los dos puntos ":" por punto y coma ";"). Una vez compilado puede ejecutar la aplicación con el comando `java -cp .:bin:lib/* App`.
+## Compilación
+
+Instrucciones para compilar desde el código fuente:
+
+1. Descarge y extraiga el repositorio a su equipo.
+2. Descargue la librería para JSON desde este [vínculo](https://mvnrepository.com/artifact/org.json/json/20230227).
+3. Dentro del repositorio cree una carpeta con nombre **lib** y coloque ahí la librería.
+4. Abra una terminal dentro del repositorio y ejecute el comando `javac -cp .:src:lib/* -d bin src/App.java` para compilar (en Windows reemplace los dos puntos ":" por punto y coma ";").
+5. Finalmente inicie la aplicación con el comando `java -cp .:bin:lib/* App`.
+6. (Opcional) Ejecute `jar -cvmf manifest.mf Conversor.jar res -C bin .` para crear un archivo ejecutable JAR.
