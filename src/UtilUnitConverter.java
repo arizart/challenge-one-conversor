@@ -54,5 +54,3 @@ public class UtilUnitConverter {
 		return input * 5 / 9;
 	}
 }
-
-// { "Celsius", "Fahrenheit", "Kelvin", "Rankine" }

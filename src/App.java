@@ -7,11 +7,12 @@ public class App {
 	private static JFrame frame;
 	private static CardsPane cards;
 
-	private static void renderGUI() {
+	private void renderGUI() {
 
 		frame = new JFrame("Conversor de unidades");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setIconImage(new ImageIcon("assets/icon.jpg").getImage());
+		ImageIcon logo = new ImageIcon(getClass().getResource("/res/icon.jpg"));
+		frame.setIconImage(logo.getImage());
 		frame.setResizable(false);
 
 		cards = new CardsPane();
@@ -25,7 +26,8 @@ public class App {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				renderGUI();
+				App app = new App();
+				app.renderGUI();
 			}
 		});
 	}
